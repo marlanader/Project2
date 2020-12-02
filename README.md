@@ -1,5 +1,3 @@
-# Project2
-
-#Temperature, Humidity and Soil Moisture Sensor
+# Temperature, Humidity and Soil Moisture Sensor
 
 This project was developed using C Keil uVision 
