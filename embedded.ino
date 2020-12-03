@@ -125,12 +125,7 @@ void loop(){
                
             // Display current state, and ON/OFF buttons for GPIO 27  
         
-            // If the output27State is off, it displays the ON button       
-            if (output27State=="off") {
-              
-            } else {
-              
-            }
+           
             client.println("</body></html>");
             
             // The HTTP response ends with another blank line
