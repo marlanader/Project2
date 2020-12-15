@@ -294,59 +294,43 @@ HAL_Delay(100);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-//		Display_Hum(humidity,2);
-//		DHT11_Start();
-//		presence=DHT11_Check_Response();
-//		R_Byte1=DHT11_Read();
-//		R_Byte2=DHT11_Read();
-//		Temp_Byte1=DHT11_Read();
-//		Temp_Byte2=DHT11_Read();
-//		SUM=DHT11_Read();
-//		
-//		RH=R_Byte1;
-//		humidity=(float) RH;
-//		HAL_Delay(1000);
+	///////////////////////////////////////////////Humidity////////////////////////
+		Display_Hum(humidity,2);
+		DHT11_Start();
+		presence=DHT11_Check_Response();
+		R_Byte1=DHT11_Read();
+		R_Byte2=DHT11_Read();
+		Temp_Byte1=DHT11_Read();
+		Temp_Byte2=DHT11_Read();
+		SUM=DHT11_Read();
 		
-		///////////////////////////////////////////////Temperature////////////////////////
-//		presence2= DS18B20_Start ();
-//		HAL_Delay (1);
-//		DS18B20_Write (0xCC);  // skip ROM
-//		DS18B20_Write (0x44);  // convert t
-//		HAL_Delay (800);
+		RH=R_Byte1;
+		humidity=(float) RH;
+		
+//		///////////////////////////////////////////////Temperature////////////////////////
+		presence2= DS18B20_Start ();
+		HAL_Delay (1);
+		DS18B20_Write (0xCC);  // skip ROM
+		DS18B20_Write (0x44);  // convert t
+		HAL_Delay (800);
 
-//		presence2 = DS18B20_Start ();
-//		HAL_Delay(1);
-//		DS18B20_Write (0xCC);  // skip ROM
-//		DS18B20_Write (0xBE);  // Read Scratch-pad
+		presence2 = DS18B20_Start ();
+		HAL_Delay(1);
+		DS18B20_Write (0xCC);  // skip ROM
+		DS18B20_Write (0xBE);  // Read Scratch-pad
 
-//		Temp_Byte3 = DS18B20_read();
-//		Temp_Byte4 = DS18B20_read();
+		Temp_Byte3 = DS18B20_read();
+		Temp_Byte4 = DS18B20_read();
+		
+		Temp= (Temp_Byte4<<8)|Temp_Byte3;
+		Temperature=(float)Temp/16;
+		Display_Hum(Temperature,1);
 //		
-//		Temp= (Temp_Byte4<<8)|Temp_Byte3;
-//		Temperature=(float)Temp/16;
-//		Display_Hum(Temperature,1);
-//			HAL_Delay(1000);
 
-//		presence2= DS18B20_Start ();
-//		HAL_Delay (1);
-////		DS18B20_Write (0xCC);  // skip ROM
-////		DS18B20_Write (0x44);  // convert t
-//		HAL_Delay (800);
+   
+///////////////////////////////////////////////Soil Moisture////////////////////////
 
-//		presence2 = DS18B20_Start ();
-//		HAL_Delay(1);
-////		DS18B20_Write (0xCC);  // skip ROM
-////		DS18B20_Write (0xBE);  // Read Scratch-pad
-
-//		Temp_Byte3 = DS18B20_read();
-//		Temp_Byte4 = DS18B20_read();
-//		
-//		//Temp= (Temp_Byte4<<8)|Temp_Byte3;
-//		Temperature=(float)Temp_Byte4;
-//		Display_Hum(Temperature);
-//			HAL_Delay(1000);
   HAL_ADC_Start_IT(&hadc1);
-		HAL_Delay(1000);
 		
   }
   /* USER CODE END 3 */
