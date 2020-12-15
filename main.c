@@ -114,7 +114,7 @@ void Display_Hum(float Hum1,int x)
 	if(x==1)
 	{
 	char str[20]={0};
-	sprintf(str,"Temp:%.2f",Hum1);
+	sprintf(str," Temp:%.2f",Hum1);
 	HAL_UART_Transmit(&huart2,(uint8_t *)str, sizeof(str), 10);
 }
 	if(x==2)
@@ -240,7 +240,7 @@ void adc(){
 	float limit=4095.0;
 	readvalue = HAL_ADC_GetValue(&hadc1);
 	
-	char str[5]={"Soil:"};
+	char str[5]={" Soil:"};
 	
 	 int result;
 	result=((limit-readvalue)/1900)*100;
