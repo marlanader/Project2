@@ -3,8 +3,8 @@
 #define RXD2 16
 #define TXD2 17
 // Replace with your network credentials
-const char* ssid = "AMANY";
-const char* password = "@01067169358**#";
+const char* ssid = "";
+const char* password = "";
 
 // Set web server port number to 80
 WiFiServer server(80);
@@ -36,9 +36,7 @@ void setup() {
   digitalWrite(output26, LOW);
   digitalWrite(output27, LOW);
 
-  // Connect to Wi-Fi network with SSID and password
-  //Serial.print("Connecting to ");
-  //Serial.println(ssid);
+ 
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
@@ -51,8 +49,7 @@ void setup() {
   //Serial.println(WiFi.localIP());
   server.begin();
    Serial2.begin(9600, SERIAL_8N1, RXD2, TXD2);
-  Serial.println("Serial Txd is on pin: "+String(TX));
-  Serial.println("Serial Rxd is on pin: "+String(RX));
+ 
 }
 
 void loop(){
@@ -112,10 +109,22 @@ void loop(){
             
             // Web Page Heading
             client.println("<body><h1>ESP32 Web Server</h1>");
-            String s;
-            s=Serial2.readString( );
+               String s;
+               char x,x2;
+               int i=0,n=0;
+            while(i<35)
+            {
+              x=Serial2.read();
+             
+              client.print(x);
+              i=i+1;
+             }
+             
+           
+               
             // Display current state, and ON/OFF buttons for GPIO 26  
-            client.println(s);
+
+            // The HTTP response ends with another blank line
             // If the output26State is off, it displays the ON button       
             if (output26State=="off") {
              
@@ -125,10 +134,14 @@ void loop(){
                
             // Display current state, and ON/OFF buttons for GPIO 27  
         
-           
+            // If the output27State is off, it displays the ON button       
+            if (output27State=="off") {
+              
+            } else {
+              
+            }
             client.println("</body></html>");
             
-            // The HTTP response ends with another blank line
             client.println();
             // Break out of the while loop
             break;
@@ -138,18 +151,22 @@ void loop(){
         } else if (c != '\r') {  // if you got anything else but a carriage return character,
           currentLine += c;      // add it to the end of the currentLine
         }
+       
       }
     }
-    // Clear the header variable
+  
+          
+    
+  while (Serial2.available()) {
+    
+    Serial.println(char(Serial2.read()));
+
+  }
+  // Clear the header variable
     header = "";
     // Close the connection
     client.stop();
     Serial.println("Client disconnected.");
     Serial.println("");
-  }
-  while (Serial2.available()) {
-    
-    Serial.println(char(Serial2.read()));
-
   }
 }
